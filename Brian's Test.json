@@ -26,7 +26,7 @@
                     "targetPort": "4_in"
                 }
             ],
-            "hash": "4041e64f50195619b04fb27e5f7ed3683c29a2d4",
+            "hash": "5b88f14fc072fcfa8940472a6a4a661f16ab9005",
             "nodes": {
                 "0": {
                     "data": {
@@ -107,7 +107,7 @@
                     "errors": {},
                     "id": "4",
                     "type": "code",
-                    "userCode": "    filtered_artifact_0__severity = filtered_artifact_0__severity[0]\n    \n    container = phantom.get_container(container.get('id', None))\n\n    phantom.set_severity(container=container, severity=filtered_artifact_0__severity)\n\n    \n",
+                    "userCode": "    filtered_artifact_0__severity = filtered_artifact_0__severity[1]\n    \n    container = phantom.get_container(container.get('id', None))\n\n    phantom.set_severity(container=container, severity=filtered_artifact_0__severity)\n\n    \n",
                     "x": 980,
                     "y": 824.5
                 }
@@ -121,7 +121,7 @@
         "schema": "5.0.5",
         "version": "5.2.1.78411"
     },
-    "create_time": "2022-03-30T23:38:31.398688+00:00",
+    "create_time": "2022-03-30T23:42:54.989606+00:00",
     "draft_mode": false,
     "labels": [
         "*"
