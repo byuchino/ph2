@@ -37,19 +37,19 @@ def filter_1(action=None, success=None, container=None, results=None, handle=Non
 def code_1(action=None, success=None, container=None, results=None, handle=None, filtered_artifacts=None, filtered_results=None, custom_function=None, **kwargs):
     phantom.debug("code_1() called")
 
-    filtered_artifact_0_data_filter_1 = phantom.collect2(container=container, datapath=["filtered-data:filter_1:condition_1:artifact:*.severity"])
+    container_artifact_data = phantom.collect2(container=container, datapath=["artifact:*.cef.severity"])
 
-    filtered_artifact_0__severity = [item[0] for item in filtered_artifact_0_data_filter_1]
+    container_artifact_cef_item_0 = [item[0] for item in container_artifact_data]
 
     ################################################################################
     ## Custom Code Start
     ################################################################################
-    filtered_artifact_0__severity = filtered_artifact_0__severity[0]
-    phantom.debug(filtered_artifact_0__severity)
+    container_artifact_cef_item_0 = container_artifact_cef_item_0[0]
+    phantom.debug(container_artifact_cef_item_0)
     
     container = phantom.get_container(container.get('id', None))
 
-    phantom.set_severity(container=container, severity=filtered_artifact_0__severity)
+    phantom.set_severity(container=container, severity=container_artifact_cef_item_0)
 
     
     ################################################################################
