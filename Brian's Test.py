@@ -44,7 +44,8 @@ def code_1(action=None, success=None, container=None, results=None, handle=None,
     ################################################################################
     ## Custom Code Start
     ################################################################################
-    filtered_artifact_0__severity = filtered_artifact_0__severity[1]
+    filtered_artifact_0__severity = filtered_artifact_0__severity[0]
+    phantom.debug(filtered_artifact_0__severity)
     
     container = phantom.get_container(container.get('id', None))
 
