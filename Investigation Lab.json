@@ -19,9 +19,23 @@
                     "sourcePort": "4_out",
                     "targetNode": "6",
                     "targetPort": "6_in"
+                },
+                {
+                    "id": "port_6_to_port_7",
+                    "sourceNode": "6",
+                    "sourcePort": "6_out",
+                    "targetNode": "7",
+                    "targetPort": "7_in"
+                },
+                {
+                    "id": "port_7_to_port_5",
+                    "sourceNode": "7",
+                    "sourcePort": "7_out",
+                    "targetNode": "5",
+                    "targetPort": "5_in"
                 }
             ],
-            "hash": "6908072b42155c8efceb619abc172bef0269df0a",
+            "hash": "6a0bf6c7f23a1d2552ac603f0ab11964b30be505",
             "nodes": {
                 "0": {
                     "data": {
@@ -53,7 +67,7 @@
                     "type": "end",
                     "userCode": "\n    # This function is called after all actions are completed.\n    # summary of all the action and/or all details of actions\n    # can be collected here.\n\n    # summary_json = phantom.get_summary()\n    # if 'result' in summary_json:\n        # for action_result in summary_json['result']:\n            # if 'action_run_id' in action_result:\n                # action_results = phantom.get_action_results(action_run_id=action_result['action_run_id'], result_data=False, flatten=False)\n                # phantom.debug(action_results)\n\n",
                     "x": 1000,
-                    "y": 1000
+                    "y": 1180
                 },
                 "4": {
                     "data": {
@@ -240,8 +254,8 @@
                                 "input_1": "artifact:*.cef.sourceAddress",
                                 "input_10": null,
                                 "input_2": "locate_source:action_result.data",
-                                "input_3": null,
-                                "input_4": null,
+                                "input_3": "source_reputation:action_result.summary",
+                                "input_4": "virus_search:action_result.summary",
                                 "input_5": null,
                                 "input_6": null,
                                 "input_7": null,
@@ -253,8 +267,8 @@
                     "errors": {},
                     "id": "5",
                     "type": "utility",
-                    "x": 1460,
-                    "y": 800
+                    "x": 1300,
+                    "y": 1080
                 },
                 "6": {
                     "data": {
@@ -290,6 +304,41 @@
                     "type": "action",
                     "x": 980,
                     "y": 784.5
+                },
+                "7": {
+                    "data": {
+                        "action": "file reputation",
+                        "actionType": "investigate",
+                        "advanced": {
+                            "customName": "Virus Search",
+                            "customNameId": 0,
+                            "join": []
+                        },
+                        "connector": "VirusTotal",
+                        "connectorConfigs": [
+                            "virustotal"
+                        ],
+                        "connectorId": "11f676a4-f3d4-4db0-8587-f4e942c07c7c",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "virus_search",
+                        "id": "7",
+                        "parameters": {
+                            "hash": "artifact:*.cef.fileHash"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "hash"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "7",
+                    "type": "action",
+                    "x": 980,
+                    "y": 964.5
                 }
             },
             "notes": ""
@@ -301,7 +350,7 @@
         "schema": "5.0.5",
         "version": "5.2.1.78411"
     },
-    "create_time": "2022-04-29T20:54:40.623279+00:00",
+    "create_time": "2022-04-29T20:58:15.399883+00:00",
     "draft_mode": false,
     "labels": [
         "*"
