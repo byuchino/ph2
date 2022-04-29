@@ -14,13 +14,6 @@
                     "targetPort": "4_in"
                 },
                 {
-                    "id": "port_7_to_port_5",
-                    "sourceNode": "7",
-                    "sourcePort": "7_out",
-                    "targetNode": "5",
-                    "targetPort": "5_in"
-                },
-                {
                     "id": "port_0_to_port_6",
                     "sourceNode": "0",
                     "sourcePort": "0_out",
@@ -35,21 +28,40 @@
                     "targetPort": "7_in"
                 },
                 {
-                    "id": "port_4_to_port_5",
+                    "id": "port_4_to_port_8",
                     "sourceNode": "4",
                     "sourcePort": "4_out",
-                    "targetNode": "5",
-                    "targetPort": "5_in"
+                    "targetNode": "8",
+                    "targetPort": "8_in"
                 },
                 {
-                    "id": "port_6_to_port_5",
+                    "id": "port_6_to_port_8",
                     "sourceNode": "6",
                     "sourcePort": "6_out",
-                    "targetNode": "5",
-                    "targetPort": "5_in"
+                    "targetNode": "8",
+                    "targetPort": "8_in"
+                },
+                {
+                    "id": "port_7_to_port_8",
+                    "sourceNode": "7",
+                    "sourcePort": "7_out",
+                    "targetNode": "8",
+                    "targetPort": "8_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 0
+                        }
+                    ],
+                    "id": "port_8_to_port_9",
+                    "sourceNode": "8",
+                    "sourcePort": "8_out",
+                    "targetNode": "9",
+                    "targetPort": "9_in"
                 }
             ],
-            "hash": "35a4847cbd790fafb06e864ec70ecd11a37cbedd",
+            "hash": "3c092683d3a416e17cc6fb3fdbacb39de05825ec",
             "nodes": {
                 "0": {
                     "data": {
@@ -81,7 +93,7 @@
                     "type": "end",
                     "userCode": "\n    # This function is called after all actions are completed.\n    # summary of all the action and/or all details of actions\n    # can be collected here.\n\n    # summary_json = phantom.get_summary()\n    # if 'result' in summary_json:\n        # for action_result in summary_json['result']:\n            # if 'action_run_id' in action_result:\n                # action_results = phantom.get_action_results(action_run_id=action_result['action_run_id'], result_data=False, flatten=False)\n                # phantom.debug(action_results)\n\n",
                     "x": 1000,
-                    "y": 1180
+                    "y": 1300
                 },
                 "4": {
                     "data": {
@@ -282,7 +294,7 @@
                     "id": "5",
                     "type": "utility",
                     "x": 980,
-                    "y": 860
+                    "y": 1180
                 },
                 "6": {
                     "data": {
@@ -353,6 +365,89 @@
                     "type": "action",
                     "x": 1280,
                     "y": 620
+                },
+                "8": {
+                    "data": {
+                        "advanced": {
+                            "customName": "Check Positives",
+                            "customNameId": 0,
+                            "join": []
+                        },
+                        "conditions": [
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 0,
+                                        "op": ">",
+                                        "param": "virus_search:action_result.summary.positives",
+                                        "value": "10"
+                                    }
+                                ],
+                                "conditionIndex": 0,
+                                "customName": "Hi Positives",
+                                "display": "If",
+                                "logic": "and",
+                                "type": "if"
+                            },
+                            {
+                                "comparisons": [
+                                    {
+                                        "op": "==",
+                                        "param": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "conditionIndex": 1,
+                                "customName": "Lo Positives",
+                                "display": "Else",
+                                "logic": "and",
+                                "type": "else"
+                            }
+                        ],
+                        "functionId": 1,
+                        "functionName": "check_positives",
+                        "id": "8",
+                        "type": "decision"
+                    },
+                    "errors": {},
+                    "id": "8",
+                    "type": "decision",
+                    "x": 1060,
+                    "y": 784.5
+                },
+                "9": {
+                    "data": {
+                        "advanced": {
+                            "customName": "Notify SOC Management",
+                            "customNameId": 0,
+                            "join": []
+                        },
+                        "approver": "admin",
+                        "functionId": 1,
+                        "functionName": "notify_soc_management",
+                        "id": "9",
+                        "message": "A potentially malicious file download has been detected on a local server with IP address {0}",
+                        "parameters": [
+                            "artifact:*.cef.destinationAddress"
+                        ],
+                        "responseTime": 30,
+                        "responses": [
+                            {
+                                "responseOptions": [
+                                    "Yes",
+                                    "No"
+                                ],
+                                "responsePrompt": "Notify SOC management?",
+                                "responseType": "yes/no"
+                            }
+                        ],
+                        "type": "prompt"
+                    },
+                    "errors": {},
+                    "id": "9",
+                    "type": "prompt",
+                    "x": 1060,
+                    "y": 964.5
                 }
             },
             "notes": ""
@@ -364,7 +459,7 @@
         "schema": "5.0.5",
         "version": "5.2.1.78411"
     },
-    "create_time": "2022-04-29T21:02:10.172850+00:00",
+    "create_time": "2022-04-29T21:10:59.831311+00:00",
     "draft_mode": false,
     "labels": [
         "*"
