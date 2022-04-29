@@ -14,21 +14,14 @@
                     "targetPort": "4_in"
                 },
                 {
-                    "id": "port_4_to_port_1",
+                    "id": "port_4_to_port_6",
                     "sourceNode": "4",
                     "sourcePort": "4_out",
-                    "targetNode": "1",
-                    "targetPort": "1_in"
-                },
-                {
-                    "id": "port_4_to_port_5",
-                    "sourceNode": "4",
-                    "sourcePort": "4_out",
-                    "targetNode": "5",
-                    "targetPort": "5_in"
+                    "targetNode": "6",
+                    "targetPort": "6_in"
                 }
             ],
-            "hash": "79b01dd9ad07019abd8602e9cd187a2a2f29c557",
+            "hash": "6908072b42155c8efceb619abc172bef0269df0a",
             "nodes": {
                 "0": {
                     "data": {
@@ -260,8 +253,43 @@
                     "errors": {},
                     "id": "5",
                     "type": "utility",
-                    "x": 760,
-                    "y": 764.5
+                    "x": 1460,
+                    "y": 800
+                },
+                "6": {
+                    "data": {
+                        "action": "domain reputation",
+                        "actionType": "investigate",
+                        "advanced": {
+                            "customName": "Source Reputation",
+                            "customNameId": 0,
+                            "join": []
+                        },
+                        "connector": "VirusTotal",
+                        "connectorConfigs": [
+                            "virustotal"
+                        ],
+                        "connectorId": "11f676a4-f3d4-4db0-8587-f4e942c07c7c",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "source_reputation",
+                        "id": "6",
+                        "parameters": {
+                            "domain": "artifact:*.cef.sourceDnsDomain"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "domain"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "6",
+                    "type": "action",
+                    "x": 980,
+                    "y": 784.5
                 }
             },
             "notes": ""
@@ -273,7 +301,7 @@
         "schema": "5.0.5",
         "version": "5.2.1.78411"
     },
-    "create_time": "2022-04-29T20:33:01.768062+00:00",
+    "create_time": "2022-04-29T20:54:40.623279+00:00",
     "draft_mode": false,
     "labels": [
         "*"
