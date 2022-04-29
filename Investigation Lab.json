@@ -61,7 +61,7 @@
                     "targetPort": "9_in"
                 }
             ],
-            "hash": "3c092683d3a416e17cc6fb3fdbacb39de05825ec",
+            "hash": "2c779c0d1b99eeec745042a13b0443e0e723962d",
             "nodes": {
                 "0": {
                     "data": {
@@ -420,6 +420,7 @@
                         "advanced": {
                             "customName": "Notify SOC Management",
                             "customNameId": 0,
+                            "drop_none": true,
                             "join": []
                         },
                         "approver": "admin",
@@ -459,7 +460,7 @@
         "schema": "5.0.5",
         "version": "5.2.1.78411"
     },
-    "create_time": "2022-04-29T21:10:59.831311+00:00",
+    "create_time": "2022-04-29T21:13:43.337055+00:00",
     "draft_mode": false,
     "labels": [
         "*"
