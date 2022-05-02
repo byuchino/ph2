@@ -59,9 +59,16 @@
                     "sourcePort": "8_out",
                     "targetNode": "9",
                     "targetPort": "9_in"
+                },
+                {
+                    "id": "port_9_to_port_10",
+                    "sourceNode": "9",
+                    "sourcePort": "9_out",
+                    "targetNode": "10",
+                    "targetPort": "10_in"
                 }
             ],
-            "hash": "2c779c0d1b99eeec745042a13b0443e0e723962d",
+            "hash": "d9a75729446ea2ce95c683078e1184da937ef4c3",
             "nodes": {
                 "0": {
                     "data": {
@@ -76,7 +83,7 @@
                     "id": "0",
                     "type": "start",
                     "x": 1000,
-                    "y": 460
+                    "y": 459.9999999999999
                 },
                 "1": {
                     "data": {
@@ -93,7 +100,70 @@
                     "type": "end",
                     "userCode": "\n    # This function is called after all actions are completed.\n    # summary of all the action and/or all details of actions\n    # can be collected here.\n\n    # summary_json = phantom.get_summary()\n    # if 'result' in summary_json:\n        # for action_result in summary_json['result']:\n            # if 'action_run_id' in action_result:\n                # action_results = phantom.get_action_results(action_run_id=action_result['action_run_id'], result_data=False, flatten=False)\n                # phantom.debug(action_results)\n\n",
                     "x": 1000,
-                    "y": 1300
+                    "y": 1420
+                },
+                "10": {
+                    "data": {
+                        "advanced": {
+                            "customName": "Evaluate Prompt",
+                            "customNameId": 0,
+                            "join": []
+                        },
+                        "conditions": [
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 0,
+                                        "op": "!=",
+                                        "param": "notify_soc_management:action_result.status",
+                                        "value": "success"
+                                    }
+                                ],
+                                "conditionIndex": 0,
+                                "customName": "Timeout",
+                                "display": "If",
+                                "logic": "and",
+                                "type": "if"
+                            },
+                            {
+                                "comparisons": [
+                                    {
+                                        "op": "==",
+                                        "param": "notify_soc_management:action_result.summary.responses.0",
+                                        "value": "Yes"
+                                    }
+                                ],
+                                "conditionIndex": 1,
+                                "customName": "Escalate",
+                                "display": "Else If",
+                                "logic": "and",
+                                "type": "elif"
+                            },
+                            {
+                                "comparisons": [
+                                    {
+                                        "op": "==",
+                                        "param": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "conditionIndex": 2,
+                                "customName": "Close",
+                                "display": "Else",
+                                "logic": "and",
+                                "type": "else"
+                            }
+                        ],
+                        "functionId": 2,
+                        "functionName": "evaluate_prompt",
+                        "id": "10",
+                        "type": "decision"
+                    },
+                    "errors": {},
+                    "id": "10",
+                    "type": "decision",
+                    "x": 1060,
+                    "y": 1164.5
                 },
                 "4": {
                     "data": {
@@ -293,8 +363,8 @@
                     "errors": {},
                     "id": "5",
                     "type": "utility",
-                    "x": 980,
-                    "y": 1180
+                    "x": 1380,
+                    "y": 1000
                 },
                 "6": {
                     "data": {
@@ -460,7 +530,7 @@
         "schema": "5.0.5",
         "version": "5.2.1.78411"
     },
-    "create_time": "2022-04-29T21:13:43.337055+00:00",
+    "create_time": "2022-05-02T16:38:31.393359+00:00",
     "draft_mode": false,
     "labels": [
         "*"
